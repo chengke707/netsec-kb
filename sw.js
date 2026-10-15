@@ -1,5 +1,5 @@
 // 网安导论知识库 · Service Worker（离线可用 + 更新推送）
-var VERSION = 'netsec-kb-v1.0';
+var VERSION = 'netsec-kb-v1.1';
 var PRECACHE = [
   './index.html',
   './图谱.html',
@@ -47,6 +47,24 @@ self.addEventListener('activate', function (e) {
 
 self.addEventListener('fetch', function (e) {
   if (e.request.method !== 'GET') return;
+  // 核心页面：网络优先（内容更新即时生效；断网时回退缓存/首页）
+  if (e.request.mode === 'navigate') {
+    e.respondWith(
+      fetch(e.request).then(function (resp) {
+        if (resp && resp.status === 200) {
+          var copy = resp.clone();
+          caches.open(VERSION).then(function (c) { c.put(e.request, copy); });
+        }
+        return resp;
+      }).catch(function () {
+        return caches.match(e.request).then(function (hit) {
+          return hit || caches.match('./index.html');
+        });
+      })
+    );
+    return;
+  }
+  // 其余资源：缓存优先，未命中再请求并缓存
   e.respondWith(
     caches.match(e.request).then(function (hit) {
       if (hit) return hit;
