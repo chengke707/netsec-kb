@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>网安导论知识库 · 概念图谱</title>
 <style>
   :root { --bg:#0f172a; --panel:#1e293b; --line:#334155; --fg:#e2e8f0; --dim:#94a3b8; --accent:#a78bfa; }
@@ -232,6 +235,9 @@ document.getElementById("search").addEventListener("input",function(){
 });
 
 document.getElementById("stats").textContent = DATA.nodes.length+" 个节点 · "+DATA.edges.length+" 条关系";
+</script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(){}); }
 </script>
 </body>
 </html>

@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>网安导论知识库</title>
 <style>
   body{margin:0;padding:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
@@ -21,5 +24,8 @@
 <p>基于《计算机网络安全基础（第6版）（微课版）》第1章「网络安全概述」的知识库<br>概念卡片 · 章节笔记 · 疑问集 · 习题背诵版 · 概念图谱</p>
 <a class="btn" href="图谱.html">打开概念图谱</a>
 <div class="sub"><a href="README.md">README</a> · <a href="00-首页.md">首页笔记</a> · <a href="04-习题集/第1章-习题.md">习题背诵版</a> · <a href="05-考试冲刺/背诵冲刺清单.md">背诵冲刺清单</a></div>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(){}); }
+</script>
 </body>
 </html>
